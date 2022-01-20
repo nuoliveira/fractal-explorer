@@ -22,6 +22,7 @@ GridLayer.Fractal = GridLayer.extend({
     const top = (y + 0) / scale;
     const right = (x + 1) / scale;
     const bot = (y + 1) / scale;
+    const iterations = 256;
 
     const channel = new MessageChannel();
 
@@ -40,7 +41,7 @@ GridLayer.Fractal = GridLayer.extend({
       channel.port2.close();
     };
 
-    this.worker.postMessage([left, bot, right, top], [channel.port2]);
+    this.worker.postMessage([left, bot, right, top, iterations], [channel.port2]);
     return tile;
   },
 });

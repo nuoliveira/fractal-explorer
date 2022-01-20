@@ -81,12 +81,12 @@ gl.vertexAttribPointer(iPosition, 2, gl.FLOAT, false, 0, 0);
 gl.enableVertexAttribArray(iPosition);
 
 self.onmessage = (event) => {
-  const [left, bot, right, top] = event.data;
+  const [left, bot, right, top, iterations] = event.data;
   const [port] = event.ports;
   gl.uniform2f(uViewport, canvas.width, canvas.height);
   gl.uniform2f(uLeftBot, left, bot);
   gl.uniform2f(uRightTop, right, top);
-  gl.uniform1ui(uIterations, 256);
+  gl.uniform1ui(uIterations, iterations);
   gl.drawArrays(gl.TRIANGLES, 0, 3);
   const bitmap = canvas.transferToImageBitmap();
   port.postMessage(bitmap, [bitmap]);
